@@ -13,6 +13,10 @@ Programa em Django Python com objetivo de criar uma API seguindo os Projetos Con
 
 ## Instalação:
 
+### - Certifique-se dos pre-requisitos:
+    - Faça instalação do Docker e DockerCompose
+    - Obtenha a versão do Python 3.8 ou superior 
+
 ### - Instale o Container Docker
 
     cd docker
