@@ -15,4 +15,6 @@ Programa em Django Python com objetivo de criar uma API seguindo os Projetos Con
 
 ### - Instale o Container Docker
 
-    docker compose up -d -f ./docker/docker-compose.yml
+    cd docker
+    
+    ./docker_container.sh
