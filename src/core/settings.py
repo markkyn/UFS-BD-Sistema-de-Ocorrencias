@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ufs-bd-t01-ocorrencias',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'host.docker.internal',
+        'PORT': '5432',
     }
 }
 

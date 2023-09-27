@@ -13,13 +13,16 @@ services:
     depends_on:
       - db
   db:
-    image: postgres:13
+    image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: hidded
-      POSTGRES_USER: hidded
-      POSTGRES_PASSWORD: hidded
+      POSTGRES_DB: ufs-bd-t01-ocorrencias
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
 
 volumes:
   postgres_data:
