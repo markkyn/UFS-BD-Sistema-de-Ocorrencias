@@ -15,3 +15,5 @@ RUN pip install --upgrade pip \
     && pip install -r ./requirements.txt
 
 COPY ./src /app/
+
+ENV PYTHONPATH "/usr/bin/python3:/usr/src/app"

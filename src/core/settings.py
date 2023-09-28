@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    'common',
+    'ocorrencias',
+
     # 3rd Party Apps
     'drf_yasg',
     'rest_framework',
@@ -54,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = 'routes.urls'
 
 TEMPLATES = [
     {
