@@ -11,7 +11,7 @@ Para facilitar o trabalho avaliação do professor, estou disponibilizando nesse
 
 - Atividade 1: [Conexão com Banco AWS](./docs/atividades/etapa_1.py) 
 - Atividade 2: Estudos sobre Bancos de Dados e Sistemas Gerenciamento de Banco de dados 
-- Atividade 3: [Projeto Conceitual](./docs/diagrams/[Banco%20de%20Dados]%20Projeto%20Conceitual-1.pdf)
+- Atividade 3: [Projeto Conceitual](./docs/diagrams)
 - Atividade 4: [Projeto Lógico](./docs/diagrams/projeto_logico.png)
 - Atividade 5: [Consultas SQL](./docs/sql/consultas_atv5.sql)
 
@@ -36,9 +36,8 @@ cd docker
 Concluida essa etapa sem erros, você deve ter um container docker funcionando com o sistema Django em questão.
 
 Com um cliente HTTP ou pelo proprio navegador acesse: 
-- **Módulo de Modelos Comuns:** http://localhost:8001/swagger/comum
-- **Módulo de Ocorrências:** http://localhost:8001/swagger/ocorrencias
-
+- **Swagger:** http://localhost:8001/swagger/
+- **Documentação:** http://localhost:8001/redoc/
     
 ## Estrutura de Projeto:
     .
