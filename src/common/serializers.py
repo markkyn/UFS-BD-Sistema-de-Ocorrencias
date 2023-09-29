@@ -20,3 +20,8 @@ class InstituicaoSerializer(ModelSerializer):
     class Meta:
         model = Instituicao
         fields = '__all__'
+
+class EnderecoSerializer(ModelSerializer):
+    class Meta:
+        model = Endereco
+        fields = '__all__'

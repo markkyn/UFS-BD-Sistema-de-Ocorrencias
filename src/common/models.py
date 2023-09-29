@@ -1,15 +1,6 @@
 from django.db import models
 from django.db.models import Model
-from django.core.validators import MinValueValidator, MaxValueValidator, 
-
-
-PRIORIDADE = (
-    (1, "Urgente"),
-    (2, "Alta"),
-    (3, "Media"),
-    (4, "Baixa"),
-    (5, "Irrisorio"),
-)
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Usuario(Model):
     email = models.CharField("Email")
@@ -45,20 +36,26 @@ class PessoaFisica(Model):
 
 class Endereco(Model):
     cep = models.CharField("CEP", max_length=9)
-    bairro = models.CharField("Bairro", max_length=45)
+    bairro = models.CharField("Bairro", max_length=45, null=False)
     rua = models.CharField("Nome da Rua", max_length=45)
-
-class Profissional(Model):
-    registro_profissional = models.CharField("Registro Profissional")
-    codigo_cbo = models.CharField("Especialização CBO")
 
 class Instituicao(Model):
     nome = models.CharField("Nome da Instituição")
     endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE, null=False, blank=False)
     instituicao_gestora = models.OneToOneField("Instituicao", on_delete=models.SET_NULL, null=True, blank= False) 
 
+class Profissional(Model):
+    registro_profissional = models.CharField("Registro Profissional")
+    codigo_cbo = models.CharField("Especialização CBO")
+
 class VinculoProfissional(Model):
     profissional = models.ForeignKey(Profissional, on_delete=models.CASCADE)
     instituicao  = models.ForeignKey(Instituicao, on_delete=models.CASCADE)
     is_active    = models.BooleanField("Vinculo Ativo?", default=True)
 
+# Especializações de Profissional
+class Solicitante(Model):
+    profissional = models.ForeignKey(Profissional, on_delete=models.CASCADE)
+
+class Operacional(Model):
+    profissional = models.ForeignKey(Profissional, on_delete=models.CASCADE)
