@@ -1,11 +1,23 @@
 from django.db import models
 from django.db.models import Model
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.hashers import make_password
 
 class Usuario(Model):
-    email = models.CharField("Email")
-    data_cadastro = models.DateTimeField("Data de Cadastro")
-    last_login   = models.DateTimeField("Ultimo Login")
+    email = models.CharField("Email", max_length=255, unique = True)
+    senha = models.CharField("Senha", max_length=128, default=None)
+    data_cadastro = models.DateTimeField("Data de Cadastro", auto_now=True)
+    last_login    = models.DateTimeField("Ultimo Login", null=True)
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            orig = Usuario.objects.get(pk=self.pk)
+            if orig.senha != self.senha:
+                self.senha = make_password(self.senha)
+        else:
+            self.senha = make_password(self.senha)
+
+        super(Usuario, self).save(*args, **kwargs)
 
 class Telefone(Model):
     numero = models.IntegerField("Número de Telefone", validators=[MinValueValidator(970_000_000), MaxValueValidator(999_999_999)])
@@ -13,9 +25,8 @@ class Telefone(Model):
     pais = models.IntegerField("País de Origem", validators=[MinValueValidator(11), MaxValueValidator(99)] )
     pessoa = models.ForeignKey("PessoaFisica", on_delete=models.CASCADE)
 
-
 class PessoaFisica(Model):
-    cpf = models.BigIntegerField("CPF", primary_key=True, validators=[MinValueValidator(10_000_000_000), MaxValueValidator(99_999_999_999)])
+    cpf = models.BigIntegerField("CPF", primary_key=True, validators=[MinValueValidator(1_000_000_000), MaxValueValidator(99_999_999_999)])
     data_nascimento = models.DateField("Data de Nascimento")
     primeiro_nome = models.CharField("Primeiro Nome")
     sobrenome = models.CharField("Sobrenome")
