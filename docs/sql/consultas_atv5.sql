@@ -43,9 +43,21 @@ SELECT * FROM profissional
             (SELECT cpf FROM pessoafisica WHERE id >= 2);
 
 -- 11) Consulta usando operador EXISTS
+-- cpf de todos os profissionais que sao ativos em pelo menos uma instituicao
+SELECT pessoa_cpf FROM profissional p
+    WHERE EXISTS (SELECT NULL FROM vinculoprofissional vp WHERE p.id = vp.profissional_id AND vp.is_active = 1);
 
 -- 12) Consulta usando operador SOME
+-- Nome completo das pessoas que possuem algum telefone que nao e brasileiro
+SELECT primeiro_nome, sobrenome FROM pessoafisica pf
+    WHERE pf.cpf = SOME (SELECT pessoa FROM telefone t WHERE t.country <> 55);
 
 -- 13) Consulta usando operador ALL
+-- Instituicoes onde todos os profissionais sao ativos
+SELECT nome FROM instituicao i
+    WHERE 1 = ALL (SELECT is_active FROM vinculoprofissional vp WHERE i.id = vp.instituicao_id);
 
 -- 14) Consulta aninhadas no FROM
+-- Instituicoes cujo endereco já foi passivo de atendimento
+SELECT nome, rua, bairro FROM (SELECT i.nome, e.rua, e.bairro, i.endereco FROM endereco e INNER JOIN instituicao i ON e.id = i.endereco) x
+    WHERE EXISTS (SELECT NULL FROM atendimento a WHERE a.endereco = x.endereco);
