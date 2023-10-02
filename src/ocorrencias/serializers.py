@@ -10,6 +10,7 @@ class OcorrenciaSerializer(ModelSerializer):
 
 class AtendimentoSerializer(ModelSerializer):
     endereco = EnderecoSerializer()
+    ocorrencia = OcorrenciaSerializer()
 
     class Meta:
         model = Atendimento
@@ -18,7 +19,11 @@ class AtendimentoSerializer(ModelSerializer):
     def create(self, validated_data):
         endereco_data = validated_data.pop('endereco')
         endereco = Endereco.objects.create(**endereco_data)
-        atendimento = Atendimento.objects.create(endereco = endereco, **validated_data)
+
+        ocorrencia_data = validated_data.pop('ocorrencia')
+        ocorrencia = Ocorrencia.objects.create(**ocorrencia_data)
+        
+        atendimento = Atendimento.objects.create(endereco = endereco, ocorrencia = ocorrencia, **validated_data)
         return atendimento 
 
 class RelatorioSerializer(ModelSerializer):
