@@ -21,6 +21,7 @@ class Ocorrencia(Model):
 class Atendimento(Model):
     datahora_atendimento = models.DateTimeField("Data do Atendimento")
     endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
+    ocorrencia = models.Foreignkey(Ocorrencia, on_delete=models.CASCADE)
     operadores = models.ManyToManyField(Operacional)
 
 class Relatorio(Model):
