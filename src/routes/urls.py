@@ -41,8 +41,10 @@ schema_view = get_schema_view(
 router = DefaultRouter()
 router.register('usuarios', UsuarioViewSet)
 router.register('pessoas_fisicas', PessoaFisicaViewSet)
-router.register('profissionais', ProfissionalViewSet)
 router.register('instituicoes', InstituicaoViewSet)
+router.register('profissionais', ProfissionalViewSet)
+router.register('solicitante', SolicitanteViewSet)
+router.register('operacional', OperacionalViewSet)
 
 # Ocorrencias
 router.register('ocorrencias', OcorrenciasViewSet)

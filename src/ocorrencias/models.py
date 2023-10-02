@@ -16,12 +16,12 @@ class Ocorrencia(Model):
     datahora_criacao = models.DateTimeField("Data de Criação",auto_now=True)
     solicitante = models.ForeignKey(Solicitante, on_delete=models.CASCADE)
     prioridade = models.IntegerField(default=3, choices=PRIORIDADE)
-    observações = models.TextField()
+    observações = models.TextField(null=True, blank=True)
 
 class Atendimento(Model):
     datahora_atendimento = models.DateTimeField("Data do Atendimento")
     endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
-    ocorrencia = models.Foreignkey(Ocorrencia, on_delete=models.CASCADE)
+    ocorrencia = models.ForeignKey(Ocorrencia, on_delete=models.CASCADE, null=True)
     operadores = models.ManyToManyField(Operacional)
 
 class Relatorio(Model):

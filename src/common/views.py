@@ -19,3 +19,10 @@ class InstituicaoViewSet(viewsets.ModelViewSet):
     queryset = Instituicao.objects.all()
     serializer_class = InstituicaoSerializer
 
+class SolicitanteViewSet(viewsets.ModelViewSet):
+    queryset = Solicitante.objects.all()
+    serializer_class = SolicitanteSerializer
+
+class OperacionalViewSet(viewsets.ModelViewSet):
+    queryset = Operacional.objects.all()
+    serializer_class = OperacionalSerializer

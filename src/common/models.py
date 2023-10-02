@@ -58,6 +58,7 @@ class Instituicao(Model):
 class Profissional(Model):
     registro_profissional = models.CharField("Registro Profissional")
     codigo_cbo = models.CharField("Especialização CBO")
+    pessoa_cpf = models.ForeignKey(PessoaFisica, on_delete=models.CASCADE)
 
 class VinculoProfissional(Model):
     profissional = models.ForeignKey(Profissional, on_delete=models.CASCADE)
